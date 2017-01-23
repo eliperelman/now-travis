@@ -78,6 +78,9 @@ and update the pull request with the staging URL:
 
 Clicking on the "Details" link will open the page to the staging deployment URL.
 
+When pushing commits to master, now-travis will deploy the build to ∆ Now and alias the deployment using the value specified
+in the `NOW_ALIAS` environment variable. This environment variable is only used on pushes, not pull requests.
+
 ## Notes
 
 While this module has been tested, it may not work perfectly in every Travis deployment situation. Please test
