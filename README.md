@@ -69,6 +69,15 @@ branches:
     - master
 ```
 
+## Deployment
+
+When creating pull requests after a Travis build has been successfully completed, now-travis will create a ∆ Now deployment
+and update the pull request with the staging URL:
+
+![Screenshot](screenshot.png)
+
+Clicking on the "Details" link will open the page to the staging deployment URL.
+
 ## Notes
 
 While this module has been tested, it may not work perfectly in every Travis deployment situation. Please test
