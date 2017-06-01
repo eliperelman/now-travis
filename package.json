@@ -1,6 +1,6 @@
 {
   "name": "now-travis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": "eliperelman/now-travis",
   "author": "Eli Perelman <eli@eliperelman.com>",
   "license": "MIT",
