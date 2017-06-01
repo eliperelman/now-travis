@@ -25,7 +25,6 @@ if (!nowToken) {
 
 const client = github.client(githubToken);
 const ghRepo = client.repo(process.env.TRAVIS_REPO_SLUG);
-const sha = process.env.TRAVIS_COMMIT;
 
 function noop() {}
 
@@ -35,7 +34,7 @@ function getUrl(content) {
   return urls.map(url => normalizeUrl(url.trim().replace(/\.+$/, '')))[0];
 }
 
-function deploy(context) {
+function deploy(context, sha) {
   ghRepo.status(sha, {
     context,
     state: 'pending',
@@ -87,7 +86,7 @@ travisAfterAll((code, err) => {
   }
 
   switch (process.env.TRAVIS_EVENT_TYPE) {
-    case 'pull_request': return deploy('staging');
-    case 'push': return deploy('production');
+    case 'pull_request': return deploy('staging', process.env.TRAVIS_PULL_REQUEST_SHA);
+    case 'push': return deploy('production', process.env.TRAVIS_COMMIT);
   }
 });
