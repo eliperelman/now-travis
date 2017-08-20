@@ -5,8 +5,12 @@ const normalizeUrl = require('normalize-url');
 const spawn = require('cross-spawn');
 const travisAfterAll = require('travis-after-all');
 const urlRegex = require('url-regex');
-
+const fs = require('fs');
 const nowCli = require.resolve('now/bin/now');
+
+const argv = require('yargs').argv;
+// should the URL be written to a file?
+const writeURL = argv.file; // this will be the filename
 
 if (!process.env.CI || !process.env.TRAVIS) {
   throw new Error('Could not detect Travis CI environment');
@@ -69,6 +73,8 @@ function deploy(context, sha) {
 
   child.on('close', () => {
     const target_url = alias || getUrl(stdout);
+    if (writeURL) fs.writeFileSync(writeURL, target_url);
+    // deployment is now complete
 
     ghRepo.status(sha, {
       context,
