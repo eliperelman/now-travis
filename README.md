@@ -78,6 +78,14 @@ and update the pull request with the staging URL:
 
 Clicking on the "Details" link will open the page to the staging deployment URL.
 
+If you want to get the staging URL in subsequent steps of your Travis build, e.g running a [lighthouse-ci](https://github.com/ebidel/lighthouse-ci) test on the stage build, you can instruct `now-travis` to write the URL in a file by passing a `file` argument with the name of the file.
+
+```yaml
+  - NOW_ALIAS=myalias.com node_modules/.bin/now-travis --file=now-staging-url
+```
+
+With this, the staging URL will be written to a file named `now-staging-url`.
+
 When pushing commits to master, now-travis will deploy the build to ∆ Now and alias the deployment using the value specified
 in the `NOW_ALIAS` environment variable. This environment variable is only used on pushes, not pull requests.
 
