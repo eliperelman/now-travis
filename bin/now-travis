@@ -86,9 +86,8 @@ function deploy(context, sha) {
 }
 
 travisAfterAll((code, err) => {
-  // Don't do anything if there was an error of if the build returned a failing code
   if (err || code) {
-    return;
+    throw err
   }
 
   switch (process.env.TRAVIS_EVENT_TYPE) {
