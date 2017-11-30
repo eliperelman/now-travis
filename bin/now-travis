@@ -85,13 +85,7 @@ function deploy(context, sha) {
   });
 }
 
-travisAfterAll((code, err) => {
-  if (err || code) {
-    throw err
-  }
-
-  switch (process.env.TRAVIS_EVENT_TYPE) {
-    case 'pull_request': return deploy('staging', process.env.TRAVIS_PULL_REQUEST_SHA);
-    case 'push': return deploy('production', process.env.TRAVIS_COMMIT);
-  }
-});
+switch (process.env.TRAVIS_EVENT_TYPE) {
+  case 'pull_request': return deploy('staging', process.env.TRAVIS_PULL_REQUEST_SHA);
+  case 'push': return deploy('production', process.env.TRAVIS_COMMIT);
+}
