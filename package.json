@@ -16,7 +16,6 @@
     "normalize-url": "^1.9.0",
     "now": "^2.0.3",
     "octonode": "^0.7.8",
-    "travis-after-all": "^1.4.4",
     "url-regex": "^4.0.0",
     "yargs": "^8.0.2"
   }
